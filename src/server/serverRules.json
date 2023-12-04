@@ -1,0 +1,42 @@
+{
+  "arenaRules": {
+    "gridColumns": 40,
+    "gridRows": 30,
+    "resPath": "https://github.com/Babstonks/CaptureZeZone/tree/main/res",
+    "bglmg": "MaquetteGrosse.png",
+    "gridColor": [255, 255, 0, 4],
+    "mapFriction": [0,1,1,0,0,0,0],
+    "mapImgs": ["", "rgba(0,0,0, 1)", "", "", "", "", ""],
+    "dtFire": [300, 300,300],
+    "hitFire": [0, 10, 10],
+    "profiles": ["default", "referee", "teamBlue", "teamRed"],
+    "pIcons": ["", "🖌️", "👀" , "👀"],
+    "pImgs": ["ova.svg", "ova.svg", "ova.svg", "ova.svg"],
+    "range": [1, 0, 1, 1],
+    "dtDir": [300, 10, 300, 300],
+    "dtMove": [300, 10, 300, 300],
+    "weapon": [1, 2, 1, 1],
+    "fxFire": [true, true, true, true],
+    "hitCollision": [10, 0, 10, 10],
+    "dxMax": [1, 100, 1, 1],
+    "dyMax": [1, 100, 1, 1],
+    "lifeIni": [100, 0, 100, 100],
+    "ammoIni": [100, 0, 100, 100],
+    "invisible": [false, true, false, false],
+    "invincible": [false, true, false, false],
+    "infiniteAmmo": [false, true, false, false],
+    "collision": [false, true, true, true],
+    "teamColor": [
+      [255, 0, 0],
+      [0, 0, 255]
+    ],
+    "teamNb": 2,
+    "teamName": ["referee", "Bleu", "Rouge"],
+    "spawnArena": [
+    { "x": [13, 3, 23], "y": [6, 3, 9], "r": [10, 3, 3] }, 
+    { "x": [13, 3, 23], "y": [6, 3, 9], "r": [10, 3, 3] },
+    { "x": [13, 3, 23], "y": [6, 3, 9], "r": [10, 3, 3] }, 
+    { "x": [13, 3, 23], "y": [6, 3, 9], "r": [10, 3, 3] }
+  ]
+  }
+}
