@@ -1,9 +1,9 @@
 from typing import Any
 import time
+from math import cos,sin,pi
 # from utils import *
 
 import j2l.pytactx.agent as pytactx
-import timerMaster, scoreDealer
 
 
 # Referee interface
@@ -118,6 +118,18 @@ class IReferee:
         Return true if game is over, depending on specific conditions
         """
         ...
+    
+    def isBlockPlacable(self, player: dict[str, Any]) -> bool:
+      """
+      Call placeBlock and return True if the player can place a block, False otherwise
+      """
+      ...
+
+    def placeBlock(self, player) -> None:
+      """
+      Place a block on the arena
+      """
+      ...
 
 
 class Referee(IReferee):
@@ -126,22 +138,19 @@ class Referee(IReferee):
                  roundDuration: int = 300) -> None:
         self.__pytactxAgent = pytactx.Agent(playerId, arena, username, password, server, port)
 
-        self.__timeMaster = timerMaster.TimerMaster(self.__pytactxAgent, roundDuration)
-        self.__scoreDealer = scoreDealer.ScoreDealer()
-
         self.__pytactxAgent.team = 0
         self.__pytactxAgent.profile = 2
         self.__map = self.__pytactxAgent.game["map"]
-        self.__oldRange = None
 
-        self.__scoreDealer.resetTeamScores()
+        self.__empty = 2
+        self.__plateform = 7
 
         while len(self.__pytactxAgent.game) == 0:
             self.__pytactxAgent.lookAt((self.__pytactxAgent.dir + 1) % 4)
             self.__pytactxAgent.update()
 
     def update(self) -> None:
-        time.sleep(0.3)
+        time.sleep(0.3) 
         self.__pytactxAgent.update()
 
     def getDir(self) -> int:
@@ -153,15 +162,19 @@ class Referee(IReferee):
     def getGameInfos(self) -> dict[str, Any]:
         return self.__pytactxAgent.game
 
+    #A fusionner 
+
     def setArenaRules(self, rulesFile: dict[str, Any]) -> None:
         self.printInfoToArena("⌛ Définition des règles de la carte ...")
         for arenaRule, arenaAttribute in rulesFile["arenaRules"].items():
+            if arenaRule == "map":
+                self.__map = arenaAttribute
             self.__pytactxAgent.ruleArena(arenaRule, arenaAttribute)
 
     def createPlayers(self, rulesFile: dict[str, Any]) -> None:
         self.printInfoToArena("⌛ Création des joueurs ...")
         for player, playerAttributes in rulesFile["playersRules"].items():
-            for attributeKey, attributeValue in playerAttributes.items():
+            for attributeKey, attributeValue in playerAttributes.items():  
                 self.__pytactxAgent.rulePlayer(player, attributeKey, attributeValue)
 
     def printInfoToArena(self, info: str) -> None:
@@ -173,23 +186,24 @@ class Referee(IReferee):
     def resetArena(self) -> None:
         self.__pytactxAgent.ruleArena("reset", True)
 
-    def setRefereeMap(self, map: [[int]]) -> None:
-        self.__map = map
 
-    def getRefereeMap(self) -> [[int]]:
-        return self.__map
 
-    def updateRefereeMap(self, x: int, y: int, value: int) -> None:
-        self.__map[y][x] = value
+    #def getRefereeMap(self) -> [[int]]:
+    #    return self.__map
+
+    #def updateRefereeMap(self, x: int, y: int, value: int) -> None:
+    #    self.__map[y][x] = value
 
     def updateArenaMap(self) -> None:
         self.__pytactxAgent.ruleArena("map", self.__map)
+        time.sleep(0.3)
+        self.__pytactxAgent.update()
 
-    def getOldRange(self) -> dict[str, Any]:
-        return self.__oldRange
+    #def getOldRange(self) -> dict[str, Any]:
+    #    return self.__oldRange
 
-    def setOldRange(self, range: dict[str, Any]) -> None:
-        self.__oldRange = range
+    #def setOldRange(self, range: dict[str, Any]) -> None:
+    #    self.__oldRange = range
 
     def getCurrentRange(self) -> dict[str, Any]:
         return self.__pytactxAgent.range
@@ -219,3 +233,18 @@ class Referee(IReferee):
         if self.__timeMaster.getRemainingTime() <= 0:
             return True
         return False
+
+    def isBlockPlacable(self, player: dict[str, Any]) -> bool:
+        nextX = int(player["x"] + cos(player["dir"] * (pi/2)))
+        nextY = int(player["y"] - sin(player["dir"] * (pi/2)))
+        if nextX >= 0 and nextX < 40 and nextY >= 0 and nextY < 30:
+          if self.getGameInfos()["map"][nextY][nextX] == self.__empty:
+            return True
+        return False
+
+    def placeBlock(self, player: dict[str, Any]) -> None:
+      if self.isBlockPlacable(player):
+        nextX = int(player["x"] + cos(player["dir"] * (pi/2)))
+        nextY = int(player["y"] - sin(player["dir"] * (pi/2)))
+        self.__map[nextY][nextX] = self.__plateform
+        self.updateArenaMap()
