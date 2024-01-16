@@ -55,7 +55,7 @@ Step by step : commandes Ã  executer par l'administrateur, paquets Ã  installe
 ## Tests
 - dÃ©finition du plan de test ce qu'on attend quand on fait quoi
 
-- test_placeBlock
+test_placeBlock
 Ce test garantit que la méthode placeBlock du joueur modifie correctement l'attribut de couleur de l'agent du joueur. Il vérifie que, après l'appel à placeBlock, le deuxième élément de l'attribut de couleur de l'agent est égal à 3.
 
 test_moveTowards
