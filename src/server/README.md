@@ -7,70 +7,70 @@ The `Referee` class is a Python class designed to facilitate interactions betwee
 The `Referee` class acts as a bridge between the game referee and the gaming environment. It provides methods to update game information, set arena rules, create players, and perform various actions within the game environment.
 
 Methods
-###update()
+### update()
 Fetch the last values of referee data from the server and send buffered requests in one shot to limit bandwidth. This method should be called in the main loop at least every 10 milliseconds.
 
-###getDir() -> int
+### getDir() -> int
 Return the referee direction.
 
-###rotate(dir: int) -> None
+### rotate(dir: int) -> None
 Request a rotation of the agent on the grid. Dir should be integers values from 0 (east) to 3 (south). The request will be sent in the next update() call.
 
-###getGameInfos() -> dict[str, Any]
+### getGameInfos() -> dict[str, Any]
 Request game information.
 
-###setArenaRules(rulesFile: dict[str, Any]) -> None
+### setArenaRules(rulesFile: dict[str, Any]) -> None
 Define all the rules of the arena based on a file.
 
-###createPlayers(rulesFile: dict[str, Any]) -> None
+### createPlayers(rulesFile: dict[str, Any]) -> None
 Create all arena players based on the rules file.
 
-###printInfoToArena(info: str) -> None
+### printInfoToArena(info: str) -> None
 Print the input string to the arena info area.
 
-###openArena(open: bool) -> None
+### openArena(open: bool) -> None
 Close arena so no other player can join.
 
-###resetArena() -> None
+### resetArena() -> None
 Reset the entire arena.
 
-###resetMap() -> None
+### resetMap() -> None
 Reset the status of all map tiles.
 
-###getRefereeMap() -> [[int]]
+### getRefereeMap() -> [[int]]
 Return referee map value.
 
-###updateRefereeMap(x: int, y: int, value: int) -> None
+### updateRefereeMap(x: int, y: int, value: int) -> None
 Update the referee map.
 
-###updateArenaMap(map: [[int]]) -> None
+### updateArenaMap(map: [[int]]) -> None
 Update the arena map with the referee copy.
 
-###getCurrentRange() -> dict[str, Any]
+### getCurrentRange() -> dict[str, Any]
 Retrieve the current range of the referee from the server.
 
-###setPlayerProfileOnFire(player: dict[str, Any]) -> None
+### setPlayerProfileOnFire(player: dict[str, Any]) -> None
 Set the player profile depending on if it is firing or not.
 
-###decreasePlayerAmmo(player: dict[str, Any]) -> None
+### decreasePlayerAmmo(player: dict[str, Any]) -> None
 Update player ammo on each shot.
 
-###getCurrTimestamp() -> int
+### getCurrTimestamp() -> int
 Retrieve the current timestamp from the server.
 
-###isGameOver() -> bool
+### isGameOver() -> bool
 Return true if the game is over, depending on specific conditions.
 
-###isBlockPlacable(player: dict[str, Any]) -> bool
+### isBlockPlacable(player: dict[str, Any]) -> bool
 Call placeBlock and return True if the player can place a block, False otherwise.
 
-###placeBlock(player: dict[str, Any]) -> None
+### placeBlock(player: dict[str, Any]) -> None
 Place a block on the arena.
 
-##Contributing
+## Contributing
 Contributions are welcome! Feel free to open issues or pull requests.
 
-##License
+## License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 
