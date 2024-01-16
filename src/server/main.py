@@ -45,13 +45,14 @@ referee.setArenaRules(serverRulesdict)
 referee.update()
 time.sleep(0.3)
 
+referee.printInfoToArena("⌛ Création des joueurs ...")
 referee.createPlayers(serverRulesdict)
 referee.update()
 time.sleep(0.3)
 
 referee.printInfoToArena("⌛ En attente des joueurs ...")
 referee.update()
-time.sleep(9)
+time.sleep(6)
  
 readyPlayers = []
 
@@ -70,7 +71,15 @@ referee.update()
 # # Launch party msg
 referee.printInfoToArena("🟢 C'est parti !")
 referee.update()
+time.sleep(1)
+test = "Bleu " + str(referee.getRedPoints()) + " : " + str(referee.getBluePoints()) + " Rouge"
+
+referee.printInfoToArena(test)
+referee.update()
 time.sleep(2)
+
+testScoreCaseY = 14
+testScoreCaseX = 38 
 
 while (True):
     referee.update()
@@ -78,8 +87,20 @@ while (True):
     for player in referee.getCurrentRange().values():
         if not player["idle"]:
             if player["led"][1] == 3 :
-                print(player)
+                referee.updatePlayerColor( "[125,125,125]", player)
                 referee.placeBlock(player)
+            if player["x"] == testScoreCaseX and player["y"] == testScoreCaseY:
+                referee.increasePlayerPoints(player)
+                print(referee.getRedPoints(), " : " , referee.getBluePoints())
+                referee.createPlayers(serverRulesdict)
+                test = "Bleu " + str(referee.getRedPoints()) + " : " + str(referee.getBluePoints()) + " Rouge"
+                referee.printInfoToArena(test)
+                referee.update()
+                time.sleep(0.3)
+                print(serverRulesdict["arenaRules"]["map"])
+                referee.resetArenaMap()
+                referee.update()
+                time.sleep(0.3)
                 
 
 ##while not referee.isGameOver() :
