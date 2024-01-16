@@ -55,13 +55,13 @@ Step by step : commandes Ã  executer par l'administrateur, paquets Ã  installe
 ## Tests
 - dÃ©finition du plan de test ce qu'on attend quand on fait quoi
 
-# test_placeBlock
+#### test_placeBlock
 Ce test garantit que la méthode placeBlock du joueur modifie correctement l'attribut de couleur de l'agent du joueur. Il vérifie que, après l'appel à placeBlock, le deuxième élément de l'attribut de couleur de l'agent est égal à 3.
 
-# test_moveTowards
+#### test_moveTowards
 L'objectif de ce test est de valider la méthode moveTowards du joueur. Il simule un déplacement vers les coordonnées (1, 2) et vérifie si les coordonnées de l'agent du joueur sont correctement mises à jour à (1, 2) après le déplacement.
 
-# test_getCoordinates
+#### test_getCoordinates
 Ce test se concentre sur la méthode getCoordinates du joueur. Il définit des coordonnées spécifiques x et y pour l'agent du joueur, appelle getCoordinates et vérifie que le résultat retourné correspond aux coordonnées attendues (3, 4).
 
 - step by step pour lancer les tests
