@@ -7,10 +7,14 @@ Développé dans le cadre d'une formation, pour un formateur pour monter en comp
 ## Règles du jeu
 ### Maquette :
 -  ![Maquette](https://github.com/Babstonks/CaptureZeZone/assets/76537635/11055745-8aed-4056-9d10-bae3c3d1be79)
-#### violet générateur de blocks 
-#### rouge zone de score
-#### vert zone de heal
-#### bleu points de spawn;
+#### violet 
+générateur de blocks 
+#### rouge 
+zone de score
+#### vert 
+zone de heal
+#### bleu
+points de spawn
 
 ### Objectifs :
 -  Pour gagner il faut marquer le plus de points dans le temps imparti.
