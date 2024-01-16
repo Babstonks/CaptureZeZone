@@ -45,15 +45,9 @@ class IPlayer:
 		"""
 		...
 
-	def spawn(self) -> bool:
-		"""
-		Spawn the player in the closest spawn point
-		"""
-		...
-
 	def updateSelf(self) -> bool:
 		"""
-		Spawn the player in the closest spawn point
+		Update the player
 		"""
 		...
 
@@ -104,7 +98,6 @@ def rotate(self, dir: int):
 	self.__agent.lookAt(dir)
 
 def move(self):
-	print(self.__agent.dir)
 	match (self.__agent.dir):
 			case 0:
 					self.__agent.move(1, 0)
