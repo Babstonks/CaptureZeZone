@@ -1,4 +1,4 @@
-Introduction
+## Introduction
 Ce projet consiste en l'implémentation d'un joueur pour participer à un jeu basé sur la plateforme j2l.pytactx. Le joueur est développé en utilisant la classe Player qui hérite de l'interface IPlayer.
 
 Comment rejoindre l'arène :
@@ -15,7 +15,7 @@ verbosity: Le niveau de verbosité (par défaut : 2).
 Exemple : 
 new_player = enterzezone.Player("joueur1", "enterzezone", "demo", "demo","mqtt.jusdeliens.com")
 
-Fonctionnalités du Joueur
+## Fonctionnalités du Joueur
 Le joueur implémente les fonctionnalités suivantes, conformément à l'interface IPlayer :
 
 getTeam(): Retourne le numéro de l'équipe du joueur.
